@@ -5,9 +5,12 @@
       <h2 class="text-center"><%= @category.name %></h2>
       <div class="row">
         <h3><%= t ".word" %></h3>
+<<<<<<< HEAD
         <div class="alert alert-danger category_notifi hidden" >
           <%= t :danger_notify %>
         </div>
+=======
+>>>>>>> category add word
        <table class="table">
           <thead>
             <tr>
@@ -23,7 +26,11 @@
                 <th scope="row"><%= index + 1 %></th>
                 <td><%= word.content %></td>
                 <td>
+<<<<<<< HEAD
                   <% if word.category_id == @category.id %>
+=======
+                  <% if(word.category_id == @category.id) %>
+>>>>>>> category add word
                     <span class="label label-success depend">
                       <%= t ".depends" %>
                     </span>
@@ -39,6 +46,7 @@
                 </td>
                 <td>
                   <span class="pull-center">
+<<<<<<< HEAD
                     <% if word.category_id != @category.id %>
                       <%= button_tag "", method: :PUT,
                         class: "glyphicon glyphicon-plus-sign
@@ -46,13 +54,25 @@
                         onclick: "return category_add_word(this)",
                         data: {url: admin_word_path(word),
                         category_id: @category.id}
+=======
+                    <% if(word.category_id != @category.id) %>
+                      <%= button_tag "",method: :PUT,
+                        class: "glyphicon glyphicon-plus-sign
+                          btn btn-sm btn-warning",
+                        onclick: "return category_add_word(this)",
+                        data: {url: admin_category_category_word_path(@category, word)}
+>>>>>>> category add word
                       %>
                     <% else %>
                       <%= button_tag "",method: :PUT,
                         class: "glyphicon glyphicon-minus btn btn-sm btn-warning",
                         onclick: "return category_add_word(this)",
+<<<<<<< HEAD
                         data: {url: admin_word_path(word),
                           category_id: @category.id}
+=======
+                        data: {url: admin_category_category_word_path(@category, word)}
+>>>>>>> category add word
                       %>
                     <% end %>
                   </span>
