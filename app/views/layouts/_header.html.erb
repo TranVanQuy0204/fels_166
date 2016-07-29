@@ -30,11 +30,13 @@
         <div class="col-lg-4 col-md-12 col-sm-12">
           <% if logged_in? %>
             <div class="ed_info_wrapper">
-              <%= link_to t("user.logout"), logout_path, method: "delete" %>
+              <%= link_to t("user.logout"), logout_path, method: "delete",
+                class: "glyphicon glyphicon-user" %>
             </div>
           <% else %>
             <div class="ed_info_wrapper">
-              <%= link_to t("login.title"), "#", id: :login_button %>
+              <%= link_to t("login.title"), "#", id: :login_button,
+                class: "glyphicon glyphicon-user" %>
               <div id="login_one" class="ed_login_form">
                   <%= render "sessions/new" %>
               </div>

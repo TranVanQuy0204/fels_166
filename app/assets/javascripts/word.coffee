@@ -1,4 +1,4 @@
-@show_word_answer = (el) ->
+@admin_show_word_answer = (el) ->
   url = $(el).attr('href')
   $.get
     url: url
