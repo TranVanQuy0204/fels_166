@@ -13,7 +13,7 @@ class Word < ActiveRecord::Base
   has_many :results
   has_many :word_answers, dependent: :destroy
 
-  accepts_nested_attributes_for :word_answers,
+  accepts_nested_attributes_for :word_answers, allow_destroy: true,
     reject_if: proc {|attributes| attributes["content"].blank?}
 
   def update_category! category
@@ -26,6 +26,20 @@ class Word < ActiveRecord::Base
   def destroy_category!
     if self.results.blank?
       return self.update_attributes category_id: nil
+    end
+    return false
+  end
+
+  def destroy_word!
+    if self.results.blank?
+      return self.destroy
+    end
+    return false
+  end
+
+  def word_updates! params
+    if self.results.blank?
+      return self.update_attributes params
     end
     return false
   end

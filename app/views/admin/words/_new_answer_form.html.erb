@@ -1,13 +1,25 @@
 <div class="row">
+  <div class="col-md-12">
+    <%=f.label :content %>
+  </div>
+</div>
+<div class="row row-word-answer">
   <%= f.fields_for :word_answers do |ff| %>
-    <div class="form-group">
-      <div class="col-md-9">
-        <%= ff.label :content %>
-        <%= ff.text_field :content, class: "form-control" %>
-      </div>
-      <div class="col-md-3">
-        <%= ff.label :is_correct %>
-        <%= ff.check_box :is_correct %>
+    <div class="row <%= :hidden if ff.index >= @answers_show %>"
+      id="row-<%=ff.index  %>">
+      <div class="form-group">
+        <div class="col-md-8">
+          <%= ff.text_field :content, class: "form-control" %>
+        </div>
+        <div class="col-md-1">
+          <%= ff.radio_button :is_correct, true,
+            onclick: "return admin_choose_answer(this)" %>
+        </div>
+        <div class="col-md-2">
+          <%= ff.check_box :_destroy, class: "hidden" %>
+          <%= ff.button "", class: "btn glyphicon glyphicon-trash",
+            onclick: "return admin_delete_word_answer(this)",  type: :button %>
+        </div>
       </div>
     </div>
   <% end %>

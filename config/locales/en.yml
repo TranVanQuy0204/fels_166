@@ -138,6 +138,14 @@ en:
         title: "New Word and Word answer"
       new_word_form:
         none: "None"
+      destroy:
+        success: "Delete success"
+        danger: "Don't delete record"
+      edit:
+        title: "Edit Word and Word answer"
+      update:
+        success: "Update success"
+        danger: "Don't update this record"
     categories:
       index:
         btn_new: "New Category"

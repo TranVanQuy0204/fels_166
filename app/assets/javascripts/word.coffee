@@ -35,3 +35,33 @@
         $('.category_notifi').removeClass('hidden')
       return false
   return false
+
+@admin_delete_word_answer = (el) ->
+  answer_count = parseInt $('#word_answer_count').val()
+  row_parents = $($(el).parents('.row'))[0]
+  if $($(row_parents).find('input')[1]).is(':checked')
+    alert("You don't remove this element")
+  else
+    answer_count = answer_count - 1
+    $($(row_parents).find('input')[3]).prop("checked", true)
+    $(row_parents).addClass('hidden')
+    $('#word_answer_count').val(answer_count)
+
+
+@admin_add_word_answer = (el) ->
+  answer_count = parseInt $('#word_answer_count').val()
+  if 1 <= answer_count < 5
+    answer_count = answer_count + 1
+    $('.row-word-answer').find('.row').each ->
+      hidden_class = $(this)
+      if $(hidden_class).hasClass('hidden')
+        $(this).removeClass('hidden')
+        $($(this).find('input')[3]).prop("checked", false)
+        $('#word_answer_count').val(answer_count)
+        return false;
+  else
+    alert("Answer 2 to 5")
+@admin_choose_answer = (el) ->
+  $('.row-word-answer').find('.row').each ->
+    $($(this).find('input')[1]).prop("checked", false)
+  $(el).prop("checked", true)
