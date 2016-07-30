@@ -1,13 +1,20 @@
 <div class="row">
+  <div class="col-md-12">
+    <%=f.label :content %>
+  </div>
+</div>
+<div class="row">
   <%= f.fields_for :word_answers do |ff| %>
     <div class="form-group">
-      <div class="col-md-9">
-        <%= ff.label :content %>
+      <div class="col-md-8">
         <%= ff.text_field :content, class: "form-control" %>
       </div>
-      <div class="col-md-3">
-        <%= ff.label :is_correct %>
-        <%= ff.check_box :is_correct %>
+      <div class="col-md-1">
+        <%= ff.radio_button :is_correct, true, :checked => true %>
+      </div>
+      <div class="col-md-2">
+        <%= ff.button "", class: "btn glyphicon glyphicon-trash", type: :button,
+          onclick: "return admin_delete_word_answer(this)" %>
       </div>
     </div>
   <% end %>

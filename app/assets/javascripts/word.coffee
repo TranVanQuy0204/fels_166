@@ -35,3 +35,30 @@
         $('.category_notifi').removeClass('hidden')
       return false
   return false
+
+@admin_delete_word_answer = (el, total) ->
+  id = $(el).attr('data-id')
+  alert(id)
+
+@admin_add_word_answer = (el, total) ->
+  answer_count = $('#word_answer_count').val()
+  if 0 <= answer_count < 6
+    answer_count += 1
+    strVar="";
+    strVar += "<div class=\"row\">";
+    strVar += "<div class=\"form-group\">";
+    strVar += "     <div class=\"col-md-8\">";
+    strVar += "<input type=\"text\" id=\"word_word_answers_attributes_"+answer_count+"_content\" name=\"word[word_answers_attributes]["+answer_count+"][content]\" class=\"form-control\">";
+    strVar += "<\/div>";
+    strVar += "<div class=\"col-md-1\">";
+    strVar += "<input type=\"radio\" id=\"word_word_answers_attributes_"+answer_count+"_is_correct_email\" name=\"word[word_answers_attributes][0][is_correct]\" >";
+    strVar += "<\/div>";
+    strVar += "<div class=\"col-md-2\">";
+    strVar += "<button onclick=\"return admin_delete_word_answer(this)\" class=\"btn glyphicon glyphicon-trash\" type=\"button\" name=\"button\"><\/button>";
+    strVar += "<\/div>";
+    strVar += "<\/div>";
+    strVar += "<\/div>";
+    $('.show_answer_form').append(strVar);
+    $('#word_answer_count').val(answer_count)
+  else
+    alert(2)

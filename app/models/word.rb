@@ -29,4 +29,11 @@ class Word < ActiveRecord::Base
     end
     return false
   end
+
+  def destroy_word!
+    if self.results.blank?
+      return self.destroy
+    end
+    return false
+  end
  end

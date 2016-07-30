@@ -42,7 +42,15 @@ class Admin::WordsController < ApplicationController
       respond_to do |format|
         format.js {render json: {result:  @word.destroy_category!}}
       end
+    else
+      if @word.destroy_word!
+        flash[:success] = t ".success"
+      else
+        flash[:danger] = t ".danger"
+      end
+      redirect_to admin_words_path
     end
+
   end
 
   private

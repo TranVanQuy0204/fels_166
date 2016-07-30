@@ -4,7 +4,7 @@ $(document).on 'ready page:load', ->
     $('#login_one').slideToggle(1000);
     event.stopPropagation();
 
-  $('#add_answer').on 'click', (event) ->
+  $('#add_answer1').on 'click', (event) ->
     answer += 1;
     strVar="";
     strVar += "<div class=\"row\">";
