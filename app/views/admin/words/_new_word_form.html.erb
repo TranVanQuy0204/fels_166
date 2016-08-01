@@ -17,10 +17,11 @@
         <%= render "new_answer_form", f: f %>
       </div>
       <div class="col-md-8 form-group">
-        <%= f.hidden_field :answer_count, value: 0 %>
+        <%= f.hidden_field :answer_count, value: @answers_show %>
         <div class="text-center button form-group">
           <%= f.button "", id: "add_answer", type: :button,
-            class: "btn glyphicon glyphicon-plus", onclick: "admin_add_word_answer(this)" %>
+            class: "btn glyphicon glyphicon-plus",
+            onclick: "admin_add_word_answer(this)" %>
         </div>
       </div>
     </div>

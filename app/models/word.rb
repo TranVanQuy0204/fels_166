@@ -13,9 +13,10 @@ class Word < ActiveRecord::Base
   has_many :results
   has_many :word_answers, dependent: :destroy
 
-  accepts_nested_attributes_for :word_answers,
+  accepts_nested_attributes_for :word_answers, allow_destroy: true,
     reject_if: proc {|attributes| attributes["content"].blank?}
 
+  before_save :validate_answer_correct
   def update_category! category
     if self.results.blank?
       return self.update_attributes category_id: category.id
@@ -35,5 +36,19 @@ class Word < ActiveRecord::Base
       return self.destroy
     end
     return false
+  end
+
+  def word_updates! params
+    if self.results.blank?
+      return self.update_attributes params
+    end
+    return false
+  end
+  private
+
+  def validate_answer_correct
+    unless self.word_answers.select{|answer| answer.is_correct}.size == 1
+      self.errors.add :name, I18n.t("messages.answer_correct")
+    end
   end
  end

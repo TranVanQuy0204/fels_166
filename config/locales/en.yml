@@ -26,6 +26,7 @@ en:
     create_failed: "Create failed"
     error: "Error"
     admin_login: "You are not role"
+    answer_correct: "You must choose 1 answer"
   signup_title: "Sign up"
   signup_btn: "Sign up"
   error_unit: "error"
@@ -141,6 +142,11 @@ en:
       destroy:
         success: "Delete success"
         danger: "Don't delete record"
+      edit:
+        title: "Edit Word and Word answer"
+      update:
+        success: "Update success"
+        danger: "Don't update this record"
     categories:
       index:
         btn_new: "New Category"

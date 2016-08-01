@@ -1,9 +1,11 @@
 class Admin::WordsController < ApplicationController
   before_action :logged_in_user, :verify_admin
-  before_action :load_word, only: [:update, :destroy]
+  before_action :load_word, only: [:update, :destroy, :edit]
+
   def new
     @word = Word.new
-    @answers = @word.word_answers.build
+    @answers_show = 1
+    @answers = Settings.max_answer.times {@word.word_answers.build}
   end
 
   def create
@@ -34,6 +36,14 @@ class Admin::WordsController < ApplicationController
       respond_to do |format|
         format.js {render json: {result: @word.update_category!(@category)}}
       end
+    else
+      if @word.word_updates! word_params
+        flash[:success] = t ".success"
+        redirect_to admin_words_path
+      else
+        flash[:danger] = t ".danger"
+        render :edit
+      end
     end
   end
 
@@ -53,10 +63,15 @@ class Admin::WordsController < ApplicationController
 
   end
 
+  def edit
+    @answers = @word.word_answers
+    @answers_show = @answers.count
+    (Settings.max_answer - @answers_show).times {@word.word_answers.build}
+  end
   private
   def word_params
     params.require(:word).permit :content, :category_id,
-      word_answers_attributes: [:content, :is_correct]
+      word_answers_attributes: [:id, :content, :is_correct, :_destroy]
   end
 
   def load_word

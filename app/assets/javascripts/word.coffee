@@ -36,29 +36,36 @@
       return false
   return false
 
-@admin_delete_word_answer = (el, total) ->
-  id = $(el).attr('data-id')
-  alert(id)
-
-@admin_add_word_answer = (el, total) ->
-  answer_count = $('#word_answer_count').val()
-  if 0 <= answer_count < 6
-    answer_count += 1
-    strVar="";
-    strVar += "<div class=\"row\">";
-    strVar += "<div class=\"form-group\">";
-    strVar += "     <div class=\"col-md-8\">";
-    strVar += "<input type=\"text\" id=\"word_word_answers_attributes_"+answer_count+"_content\" name=\"word[word_answers_attributes]["+answer_count+"][content]\" class=\"form-control\">";
-    strVar += "<\/div>";
-    strVar += "<div class=\"col-md-1\">";
-    strVar += "<input type=\"radio\" id=\"word_word_answers_attributes_"+answer_count+"_is_correct_email\" name=\"word[word_answers_attributes][0][is_correct]\" >";
-    strVar += "<\/div>";
-    strVar += "<div class=\"col-md-2\">";
-    strVar += "<button onclick=\"return admin_delete_word_answer(this)\" class=\"btn glyphicon glyphicon-trash\" type=\"button\" name=\"button\"><\/button>";
-    strVar += "<\/div>";
-    strVar += "<\/div>";
-    strVar += "<\/div>";
-    $('.show_answer_form').append(strVar);
-    $('#word_answer_count').val(answer_count)
+@admin_delete_word_answer = (el) ->
+  answer_count = parseInt $('#word_answer_count').val()
+  row_parents = $($(el).parents('.row'))[0]
+  if $($(row_parents).find('input')[1]).is(':checked')
+    alert("You don't remove this element")
   else
-    alert(2)
+    answer_count = answer_count - 1
+    $($(row_parents).find('input')[3]).prop("checked", true)
+    $(row_parents).addClass('hidden')
+    $('#word_answer_count').val(answer_count)
+
+
+@admin_add_word_answer = (el) ->
+  answer_count = parseInt $('#word_answer_count').val()
+  if 1 <= answer_count < 5
+    answer_count = answer_count + 1
+    $('.row-word-answer').find('.row').each ->
+      hidden_class = $(this)
+      if $(hidden_class).hasClass('hidden')
+        $(this).removeClass('hidden')
+        $($(this).find('input')[3]).prop("checked", false)
+        $('#word_answer_count').val(answer_count)
+        return false;
+  else
+    alert("Answer 2 to 5")
+@admin_choose_answer = (el) ->
+  $('.row-word-answer').find('.row').each ->
+    $($(this).find('input')[1]).prop("checked", false)
+    correct_answer_input = $(this).find('input')[4]
+    $(correct_answer_input).val(0)
+  $(el).prop("checked", true)
+  id = $(el).attr('id').replace('_true', '');
+  $('#'+id).val(1)
