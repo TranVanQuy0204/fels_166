@@ -68,6 +68,8 @@ GEM
     erubis (2.7.0)
     excon (0.51.0)
     execjs (2.7.0)
+    faker (1.4.2)
+      i18n (~> 0.5)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.36.0)
@@ -176,6 +178,8 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -284,7 +288,9 @@ DEPENDENCIES
   carrierwave (= 0.10.0)
   coffee-rails (~> 4.1.0)
   config
+  faker (= 1.4.2)
   fog (= 1.36.0)
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick (= 3.8.0)

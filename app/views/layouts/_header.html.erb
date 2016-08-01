@@ -7,11 +7,15 @@
             <%= link_to image_tag("logo.png"), root_path, id: :logo %>
           </div>
         </div>
-        <div class="col-lg-6 col-md-8 col-sm-8">
+        <div class="col-lg-8 col-md-8 col-sm-8">
           <div class="framgia_menu">
             <ul class="collapse navbar-collapse" id="ed_menu">
               <li class="active">
-                <%= link_to t("homepage_link"), root_path %>
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home">
+                    <%= t :homepage_link %>
+                  </span>
+                <% end %>
               </li>
               <li>
                 <%= link_to t("user.users_index"), users_path %>
@@ -27,11 +31,11 @@
             </ul>
           </div>
         </div>
-        <div class="col-lg-4 col-md-12 col-sm-12">
+        <div class="col-lg-2 col-md-12 col-sm-12">
           <% if logged_in? %>
             <div class="ed_info_wrapper">
               <%= link_to t("user.logout"), logout_path, method: :delete,
-                class: "glyphicon glyphicon-user" %>
+                class: "glyphicon glyphicon-log-out" %>
             </div>
           <% else %>
             <div class="ed_info_wrapper">
