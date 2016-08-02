@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def activity_user_update user_id, target_id, action_type
+    Activity.create! user_id: user_id, action_type: action_type ,target_id: target_id
+  end
 end

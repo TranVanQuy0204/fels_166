@@ -2,6 +2,7 @@ module SessionsHelper
 
   def log_in user
     session[:user_id] = user.id
+    activity_user_update user.id, nil, Settings.activity_user_login
   end
 
   def remember user
@@ -42,6 +43,7 @@ module SessionsHelper
   end
 
   def log_out
+    activity_user_update current_user.id, nil, Settings.activity_user_logout
     forget current_user
     session.delete :user_id
     @current_user = nil

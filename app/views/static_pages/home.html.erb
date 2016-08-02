@@ -1,5 +1,9 @@
+<% provide :title, t(".title") %>
+<% if logged_in? %>
+  <%= render @activities %>
+<% else %>
 <div class="center">
   <h1><%= t "home.msg" %></h1>
   <%= link_to t("signup_link"), signup_path, class: "btn btn-lg btn-primary" %>
 </div>
-
+<% end %>

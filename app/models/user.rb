@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   after_create :activity_create
-  after_update :activity_update
 
   def self.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -82,10 +81,5 @@ class User < ActiveRecord::Base
   private
   def activity_create
     create_activity self.id, self.id, Settings.activity_user_create
-  end
-
-  def activity_update
-    byebug
-    create_activity self.id, self.id, Settings.activity_user_update
   end
 end
