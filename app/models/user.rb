@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include CreateActivity
   attr_accessor :remember_token
   before_save :downcase_email
   scope :search, ->(keyword) { where("name LIKE ?", "%#{keyword}%") }
@@ -24,9 +25,12 @@ class User < ActiveRecord::Base
   has_secure_password
   mount_uploader :avatar, AvatarUploader
 
+  after_create :activity_create
+  after_update :activity_update
+
   def self.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-     BCrypt::Engine.cost
+      BCrypt::Engine.cost
     BCrypt::Password.create string, cost: cost
   end
 
@@ -73,5 +77,15 @@ class User < ActiveRecord::Base
     if avatar.size > 2.megabytes
       errors.add :picture, t("upload_avatar_notice")
     end
+  end
+
+  private
+  def activity_create
+    create_activity self.id, self.id, Settings.activity_user_create
+  end
+
+  def activity_update
+    byebug
+    create_activity self.id, self.id, Settings.activity_user_update
   end
 end

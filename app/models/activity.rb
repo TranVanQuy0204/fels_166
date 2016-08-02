@@ -1,5 +1,4 @@
 class Activity < ActiveRecord::Base
-  enum target_id: [:lesson, :relationship, :user]
   enum action_type: [:learn, :learned, :follow, :unfollow, :register]
 
   belongs_to :user
