@@ -11,10 +11,11 @@
   <span><%= show_user_name activity.user %></span>
   <span><%= show_action_type activity.action_type %></span>
   <span>
+  <% unless activity.target_id.nil? %>
     <% object = show_link activity %>
-    <% unless object.nil? %>
       <%= link_to activity_name(object), object, class: "active " %>
     <% end %>
+  <% end %>
   </span>
   <span>
     <span class="glyphicon glyphicon-time"></span>
