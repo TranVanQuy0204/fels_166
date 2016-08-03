@@ -1,29 +1,41 @@
 <%= form_for [:admin, @word] do |f| %>
   <%= render "/shared/error_messages", object: f.object %>
-  <div class="row">
-    <%= select("word", "category_id",
+  <div class="row form-group form">
+    <div class="col-md-2">
+      <label><%= t ".category" %></label>
+    </div>
+    <div class="col-md-4">
+    <%= select"word", "category_id",
       Category.all.collect {|p| [ p.name, p.id ] },
-      {include_blank: t(".none")}) %>
+      {include_blank: t(".none")}, class: "button" %>
+    </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group">
+    <div class="col-md-5 form-group">
       <h4><%= t ".admin.word.new.word_title"%></h4>
-      <%= f.label :content %>
-      <%= f.text_field :content, class: "form-control" %>
+       <%= f.label :content %>
+      </br>
+      <div class="row">
+        <br>
+        <%= f.text_field :content, class: "form-control" %>
+      </div>
     </div>
-    <div class="col-md-6 form-group">
+    <div class="col-md-6 form-group col-md-offset-1">
     <h4><%= t ".admin.word.new.answer_title"%></h4>
-      <div class="show_answer_form form-group">
+      <%=f.label :content %>
+      <div class="row show_answer_form form-group">
         <%= render "new_answer_form", f: f %>
       </div>
       <div class="col-md-8 form-group">
         <%= f.hidden_field :answer_count, value: @answers_show %>
         <div class="text-center button form-group">
           <%= f.button "", id: "add_answer", type: :button,
-            class: "btn glyphicon glyphicon-plus admin_add_word_answer" %>
+            class: "btn btn-success glyphicon glyphicon-plus
+            admin_add_word_answer", title: t(".new_answer") %>
         </div>
       </div>
     </div>
-    <%= f.submit t(:category_new), class: "btn btn-primary" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary",
+      title: yield(:button_text) %>
   </div>
 <% end %>

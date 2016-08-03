@@ -2,10 +2,12 @@
 <div class="row">
   <div class="col-md-12">
     <div class="ed_teacher_div">
-      <h2 class="text-center"><%= t ".activity" %></h2>
+
       <div class="row">
         <% if logged_in? %>
+          <h2 class="text-center"><%= t ".activity" %></h2>
           <%= render @activities %>
+          <%= will_paginate @activities %>
         <% else %>
         <div class="center">
           <h1><%= t "home.msg" %></h1>

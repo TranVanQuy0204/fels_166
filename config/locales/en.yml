@@ -125,7 +125,7 @@ en:
   admin:
     category:
       name: "Category"
-      new: "Category new"
+      new: "New Category"
       find: "Category don't exist"
       index:
         name: "Name"
@@ -170,22 +170,31 @@ en:
         word_answer: "Word Answer"
       new:
         title: "New Word and Word answer"
+        save: "New Word"
       new_word_form:
         none: "None"
+        new_answer: "New answer"
       destroy:
         success: "Delete success"
         danger: "Don't delete record"
       edit:
         title: "Edit Word and Word answer"
+        save: "Edit Word"
       update:
         success: "Update success"
         danger: "Don't update this record"
+      new_answer_form:
+        correct: "Correct answer"
+        delete: "Delete this answer"
     categories:
       index:
         btn_new: "New Category"
         confirm: "You sure?"
         name: "Name"
         action: "Action"
+        destroy_title: "Destroy"
+        detail_title: "Detail"
+        edit_title: "Edit"
       show:
         title: "Show Category"
         word: "Word"
@@ -194,8 +203,6 @@ en:
         independent: "independent"
         depends: "depends"
         danger_notify: "Don't delete record"
-      form_edit:
-        save: "Save"
       edit:
         title: "Category edit"
         save: "Edit Category"
@@ -203,7 +210,7 @@ en:
         title: "Categroy"
       new:
         title: "New Categroy"
-        save: "New category"
+        save: "Save"
   search_text: "Search users"
   search_btn: "Search"
   homepage_link_welcome: "Home"
@@ -239,3 +246,13 @@ en:
       title: "Home"
       activity: "Activities"
       ago: "ago"
+  lessons:
+    edit:
+      save: "Save"
+      next: "Next"
+      next_title: "Next word"
+      last: "Last"
+      last_title: "Last word"
+      title_save: "Save Lesson"
+      title_finish: "Finish Lesson"
+      finish: "Finish"

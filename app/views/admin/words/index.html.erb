@@ -7,10 +7,12 @@
         <div class="row navbar-right">
           <div class="form">
             <div class="form-group">
-              <%= select_tag "word_category",
-                options_from_collection_for_select(@categories, "id", "name"),
-                class: "button", data: {url: admin_words_path} %>
-              <%= link_to t(".btn_new"), new_admin_word_path, class: "button" %>
+              <%= select "word", "category_id",
+                @categories.collect {|p| [ p.name, p.id ] },
+                {include_blank: t(".none")}, class: "button",
+                id: "word_category", data: {url: admin_words_path} %>
+              <%= link_to t(".btn_new"), new_admin_word_path,
+                class: "button", title: t(".btn_new") %>
             </div>
           </div>
         </div>
@@ -20,7 +22,7 @@
               <tr>
                 <th class="index"></th>
                 <th><%= t ".content" %></th>
-                <th><%= t ".answer" %></th>
+                <th class="text-center"><%= t ".answer" %></th>
                 <th class="action"><%= t ".action" %></th>
                 <th class="action"></th>
               </tr>

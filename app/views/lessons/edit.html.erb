@@ -1,15 +1,35 @@
-<%= @lesson.results.count %>
-<%= form_for @lesson do |f| %>
-  <ol>
-  <%= f.fields_for :results do |builder| %>
-      <%= render "result", f: builder %>
-  <% end %>
-</ol>
-<div>
-  <%= f.submit t("user.lesson.save_btn"), class: "btn btn-primary" %>
-  <%= f.submit t("user.lesson.submit_btn"), class: "btn btn-primary",
-    data: {confirm: t("user.lesson.sure")} %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="ed_teacher_div">
+      <div class="row">
+        <%= @lesson.results.count %>
+        <%= form_for @lesson do |f| %>
+            <div class="pull-right">
+              <%= f.submit t("user.lesson.save_btn"), title: t(".title_save"),
+                class: "btn btn-primary col-center-block" %>
+            </div>
+            <ol class="list-word">
+              <%= f.fields_for :results do |builder| %>
+                <%= render "result", f: builder %>
+              <% end %>
+            </ol>
+        <div>
+          <div class="row">
+            <%= f.button t(".next"), id: "btn_next", type: :button,
+              class: "btn btn-warning pull-right ", title: t(".next_title") %>
+            <%= f.button t(".last"), id: "btn_last", type: :button,
+              class: "btn btn-warning pull-left", title: t(".last_title") %>
+          </div>
+          <div class="row">
+              <%= f.submit t(".finish"), title: t(".title_finish"),
+                class: "btn btn-primary col-center-block", id: :btn_result,
+                data: {confirm: t("user.lesson.sure")} %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<% end %>
 
 

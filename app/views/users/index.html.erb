@@ -1,32 +1,39 @@
 <% provide :title, t("user.index.title") %>
-<h2><%= t "user.index.title" %></h2>
-<div class="search-form">
-  <%= form_tag users_path, method: :get do %>
-    <%= text_field_tag :search, params[:search], placeholder: t("search_text")  %>
-    <%= submit_tag t("search_btn"), id: "searchbtn" %>
-  <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="ed_teacher_div">
+      <div class="row">
+        <h2 class="text-center"><%= t "user.index.title" %></h2>
+        <div class="search-form">
+          <%= form_tag users_path, method: :get do %>
+            <%= text_field_tag :search, params[:search], placeholder: t("search_text")  %>
+            <%= submit_tag t("search_btn"), id: "searchbtn" %>
+          <% end %>
+        </div>
+        <div class="table-responsive table-condensed">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="index"></th>
+                <th><%= t ".avatar" %></th>
+                <th><%= t ".name" %></th>
+                <th><%= t ".email" %></th>
+              </tr>
+            </thead>
+             <tbody>
+              <% @users.each.with_index do |user, index| %>
+                <tr>
+                  <td><%= index %></td>
+                  <td><%= image_tag user.avatar.url if user.avatar? %></td>
+                  <td><%= link_to  user.name, user_path(user) %></td>
+                  <td><%= link_to  user.name, user.email %></td>
+                </tr>
+              <% end %>
+          </tbody>
+          </table>
+        </div>
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="table-responsive table-condensed">
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="index"></th>
-        <th><%= t ".avatar" %></th>
-        <th><%= t ".name" %></th>
-        <th><%= t ".email" %></th>
-      </tr>
-    </thead>
-     <tbody>
-      <% @users.each.with_index do |user, index| %>
-        <tr>
-          <td><%= index %></td>
-          <td><%= image_tag user.avatar.url if user.avatar? %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-        </tr>
-      <% end %>
-  </tbody>
-  </table>
-</div>
-</ul>
-<%= will_paginate %>

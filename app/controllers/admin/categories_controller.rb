@@ -15,7 +15,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new category_params
     if @category.save
       flash[:success] = t "messages.create_success"
-      redirect_to new_admin_categories_path
+      redirect_to admin_categories_path
     else
       render :new
     end

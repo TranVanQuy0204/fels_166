@@ -27,20 +27,20 @@
       </tr>
     </thead>
     <tbody>
-      <% @words.each_with_index do |word, index| %>
-        <tr>
-          <td><%= index.to_i + 1 %></td>
-          <td><%= word.content %></td>
-          <td>
-            <div class="row text-center">
-              <%= link_to "", word_word_answers_path(word),
-                class: "glyphicon glyphicon-eye-open",
-                id: "show_word_answer",
-                onclick: "return show_word_answer(this)" %>
-              <div class="row show_word_answer_<%= word.id %>"></div>
-            </div>
-          </td>
-        </tr>
+        <% @words.each_with_index do |word, index| %>
+          <tr>
+            <td><%= index.to_i + 1 %></td>
+            <td><%= word.content %></td>
+            <td>
+              <div class="row text-center">
+                <%= link_to "", word_word_answers_path(word),
+                  class: "glyphicon glyphicon-eye-open",
+                  id: "show_word_answer",
+                  onclick: "return show_word_answer(this)" %>
+                <div class="row show_word_answer_<%= word.id %>"></div>
+              </div>
+            </td>
+          </tr>
       <% end %>
     </tbody>
   </table>

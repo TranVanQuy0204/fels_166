@@ -7,7 +7,8 @@
         <div class="row navbar-right">
           <div class="form">
             <div class="form-group">
-              <%= link_to t(".btn_new"), new_admin_category_path, class: "button" %>
+              <%= link_to t(".btn_new"), new_admin_category_path,
+                class: "button" %>
             </div>
           </div>
         </div>
@@ -18,7 +19,6 @@
                 <th class="index"></th>
                 <th><%= t ".name" %></th>
                 <th class="action"><%= t ".action" %></th>
-                <th class="action"></th>
               </tr>
             </thead>
             <tbody>
@@ -28,15 +28,16 @@
                   <td><%= category.name %></td>
                   <td>
                     <%= link_to [:admin, category], method: :delete,
-                      data: {confirm: t(".confirm")} do %>
+                      data: {confirm: t(".confirm")},
+                      title: t(".destroy_title") do %>
                       <span class="glyphicon glyphicon-trash"></span>
                     <% end %>
-                  </td>
-                  <td>
-                    <%= link_to edit_admin_category_path(category) do %>
+                    <%= link_to edit_admin_category_path(category),
+                      title: t(".edit_title") do %>
                       <span class="glyphicon glyphicon-pencil"></span>
                     <% end %>
-                    <%= link_to admin_category_path(category) do %>
+                    <%= link_to admin_category_path(category),
+                      title: t(".detail_title") do %>
                       <span class="glyphicon glyphicon-check"></span>
                     <% end %>
                   </td>
@@ -44,9 +45,9 @@
               <% end %>
             </tbody>
           </table>
+          <%= will_paginate %>
         </div>
       </div>
     </div>
   </div>
 </div>
-<%= will_paginate %>

@@ -18,8 +18,6 @@
           <div class="ed_tabs_left">
             <ul class="nav nav-tabs">
               <li><%= link_to t(".my_home"), user_path(current_user) %></li>
-              <li><%= link_to t ".lesson" %></li>
-              <li><%= link_to t ".result" %></li>
               <% if logged_in? %>
                 <li>
                   <%= link_to t("user.settings"), edit_user_path(current_user) %>
