@@ -1,12 +1,12 @@
 module ActivitiesHelper
-
   def show_link activity
     action_type = activity.action_type
+    # user = User.find activity.target_id
     case action_type
     when "user_create", "user_update", "follow", "unfollow"
-      user = User.find  activity.target_id
+      user = User.find(activity.target_id)
     when "lesson_create", "lesson_do"
-      lesson = Lesson.find activity.target_id
+      lesson = Lesson.find(activity.target_id)
     end
   end
 
