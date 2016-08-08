@@ -10,12 +10,11 @@ class WordsController < ApplicationController
       word_ids = Word.joins(:results).ids
       @words = Word.in_category(params[:category_id]).where.not(id: word_ids)
     else
-      @words = Word.in_category(params[:category_id]).order(created_at: :asc).
-        paginate page: params[:page], per_page: Settings.per_page
+      @words = Word.all.paginate page: params[:page], per_page: Settings.per_page
     end
     if @words.nil?
       flash[:danger] = t "user.word.not_found"
-      redirect_to words_path
+      redirect_to root_path
     end
   end
 end

@@ -4,7 +4,8 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = Word.new
-    @answers = Settings.answer_default.times {@word.word_answers.build}
+    @answers_show = Settings.answer_default
+    @answers = @answers_show.times {@word.word_answers.build}
   end
 
   def create
@@ -20,11 +21,11 @@ class Admin::WordsController < ApplicationController
 
   def index
     @categories = Category.all
-    if params[:search]
-      @words = Word.filter_category(params[:search]).paginate page: params[:page],
+    if params[:search].blank?
+      @words = Word.order(created_at: :desc).paginate page: params[:page],
         per_page: Settings.per_page
     else
-      @words = Word.order(created_at: :desc).paginate page: params[:page],
+      @words = Word.filter_category(params[:search]).paginate page: params[:page],
         per_page: Settings.per_page
     end
   end

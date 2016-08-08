@@ -4,7 +4,7 @@ $(document).on 'ready page:load', ->
     $('#login_one').slideToggle(1000);
     event.stopPropagation();
 
-  $('#word_category').on 'change', (event) ->
+  $('#word_category option ').on 'click', (event) ->
     url = $('#word_category').attr('data-url');
     data = $('#word_category').val();
     url = url + '?search=' +data
@@ -75,8 +75,8 @@ $(document).on 'ready page:load', ->
       strVar += "<input type=\"radio\" id=\"word_word_answers_attributes_"+answer_count+"_is_correct_true\" name=\"word[word_answers_attributes]["+answer_count+"][is_correct]\" value=\"true\" class=\"admin_choose_answer\">";
       strVar += "<\/div>";
       strVar += "<div class=\"col-md-2\">";
-      strVar += "<input type=\"hidden\" value=\"0\" name=\"word[word_answers_attributes]["+answer_count+"][_destroy]\"><input type=\"checkbox\" id=\"word_word_answers_attributes_1__destroy\" name=\"word[word_answers_attributes]["+answer_count+"][_destroy]\" value=\"1\" class=\"hidden\">";
-      strVar += "<input type=\"hidden\" id=\"word_word_answers_attributes_1_is_correct\" name=\"word[word_answers_attributes]["+answer_count+"][is_correct]\">";
+      strVar += "<input type=\"hidden\" value=\"0\" name=\"word[word_answers_attributes]["+answer_count+"][_destroy]\"><input type=\"checkbox\" id=\"word_word_answers_attributes_"+answer_count+"__destroy\" name=\"word[word_answers_attributes]["+answer_count+"][_destroy]\" value=\"1\" class=\"hidden\">";
+      strVar += "<input type=\"hidden\" id=\"word_word_answers_attributes_"+answer_count+"_is_correct\" name=\"word[word_answers_attributes]["+answer_count+"][is_correct]\">";
       strVar += "<button class=\"btn glyphicon glyphicon-trash ";
       strVar += "admin_delete_word_answer\" type=\"button\" name=\"button\"><\/button>";
       strVar += "<\/div>";

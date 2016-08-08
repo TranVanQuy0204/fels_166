@@ -46,7 +46,8 @@ class Word < ActiveRecord::Base
   def validate_answer
     size_correct = self.word_answers.select{|answer| answer.is_correct}.size
     if size_correct == 0
-      errors.add "answer_is_correct", I18n.t("messages.validate_answer_size_correct")
+      errors.add "answer_is_correct",
+        I18n.t("messages.validate_answer_size_correct")
     end
     size_correct_content = self.word_answers.select{|answer|
       answer.content.blank?}.size
